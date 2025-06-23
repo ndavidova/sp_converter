@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/product.schema.json",
+  "title": "FIPS 140-3 Security Policy",
+  "description": "Schema for FIPS 140-3 Non-Proprietary Security Policy documents",
+  "type": "object",
+  "properties": {
+    "general": {
+      "type": "object",
+      "properties": {
+        "overview": {
+          "type": "string",
+          "description": "General overview of the cryptographic module"
+        },
+        "security_levels": {
+            "type": "string",
+            "description": "Description of security levels implemented"
+          },
+          "additional_information": {
+            "type": "string",
+            "description": "Optional additional information about the module"
+          }
+      },
+      "required": ["overview", "security_levels"]
+}
+    },
+
+    "cryptographic_module_specification" : {
+        "type" : "object"
+    },
+
+    "cryptographic_module_interfaces": {
+      "type": "object"
+    },
+
+    "roles_services_and_authentication": {
+      "type": "object"
+    },
+
+     "software_firmware_security": {
+      "type": "object"
+    },
+
+    "operational_environment": {
+      "type": "object"
+    },
+
+    "physical_security": {
+      "type": "object"
+    },
+
+    "non_invasive_security": {
+      "type": "object"
+    },
+
+    "sensitive_security_parameters_management": {
+      "type": "object"
+    },
+
+    "self_tests": {
+      "type": "object"
+    },
+       
+    "life_cycle_assurance": {
+      "type": "object"
+    },
+
+    "mitigation_of_other_attacks": {
+      "type": "object"
+    }
+
+    
+  }
+}
