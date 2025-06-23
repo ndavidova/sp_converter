@@ -5,70 +5,233 @@
   "description": "Schema for FIPS 140-3 Non-Proprietary Security Policy documents",
   "type": "object",
   "properties": {
+
     "general": {
       "type": "object",
       "properties": {
-        "overview": {
-          "type": "string",
-          "description": "General overview of the cryptographic module"
-        },
-        "security_levels": {
-            "type": "string",
-            "description": "Description of security levels implemented"
-          },
-          "additional_information": {
-            "type": "string",
-            "description": "Optional additional information about the module"
-          }
+        "overview": { "type": "string" },
+        "security_levels": { "type": "string" },
+        "additional_information": { "type": "string" }
       },
       "required": ["overview", "security_levels"]
-}
     },
 
-    "cryptographic_module_specification" : {
-        "type" : "object"
+    "cryptographic_module_specification": {
+      "type": "object",
+      "properties": {
+        // todo: this should be object 
+        "description": { "type": "string" },
+        "tested_and_vendor_affirmed_module_identification": {
+          "type": "object",
+          "properties": {
+            "hardware": { "type": "string" },
+            "software_firmware_hybrid": { "type": "string" },
+            "hybrid_disjoint_hardware": { "type": "string" },
+            "tested_operational_environments": { "type": "string" },
+            "vendor_affirmed_environments": { "type": "string" }
+          }
+        },
+        "excluded_components": { "type": "string" },
+        "modes_of_operation": {
+          "type": "object",
+          "properties": {
+            "modes_list": { "type": "string" },
+            "mode_change_instructions": { "type": "string" },
+            "degraded_mode_description": { "type": "string" }
+          },
+          "required": ["modes_list"]
+        },
+        "algorithms": {
+          "type": "object",
+          "properties": {
+            "approved": { "type": "string" },
+            "vendor_affirmed": { "type": "string" },
+            "non_approved_allowed": { "type": "string" },
+            "non_approved_no_security": { "type": "string" },
+            "non_approved_not_allowed": { "type": "string" }
+          },
+          "required": ["approved"]
+
+        },
+        "security_function_implementations": { "type": "string" },
+        "algorithm_specific_information": { "type": "string" },
+        "rbg_and_entropy": { "type": "string" },
+        "key_generation": { "type": "string" },
+        "key_establishment": { "type": "string" },
+        "industry_protocols": { "type": "string" },
+        "additional_information": { "type": "string" }
+      },
+      "required":  [
+        "description",
+        "tested_and_vendor_affirmed_module_identification",
+        "excluded_components",
+        "modes_of_operation",
+        "algorithms",
+        "security_function_implementations",
+        "algorithm_specific_information",
+        "rbg_and_entropy",
+        "key_generation",
+        "key_establishment",
+        "industry_protocols"
+      ]
     },
 
     "cryptographic_module_interfaces": {
-      "type": "object"
+      "type": "object",
+        "properties": {
+        "ports_and_interfaces": { "type": "string" },
+        "trusted_channel_specification": { "type": "string" },
+        "control_interface_not_inhibited": { "type": "string" },
+        "additional_information": { "type": "string" }
+      },
+      "required": ["ports_and_interfaces"]
     },
 
-    "roles_services_and_authentication": {
-      "type": "object"
+    "roles_services_authentication": {
+      "type": "object",
+        "properties": {
+        "authentication_methods": { "type": "string" },
+        "roles": { "type": "string" },
+        "approved_services": { "type": "string" },
+        "non_approved_services": { "type": "string" },
+        "external_software_firmware_loaded": { "type": "string" },
+        "bypass_actions": { "type": "string" },
+        "cryptographic_output_actions": { "type": "string" },
+        "additional_information": { "type": "string" }
+      },
+      "required": [
+        "authentication_methods", 
+        "roles", 
+        "approved_services", 
+        "non_approved_services", 
+        "external_software_firmware_loaded"
+      ]
     },
 
      "software_firmware_security": {
-      "type": "object"
+      "type": "object",
+        "properties": {
+        "integrity_techniques": { "type": "string" },
+        "initiate_on_demand": { "type": "string" },
+        "open_source_parameters": { "type": "string" },
+        "additional_information": { "type": "string" }
+        },
+        "required": [
+          "integrity_techniques", 
+          "initiate_on_demand"
+        ]
     },
 
     "operational_environment": {
-      "type": "object"
+      "type": "object",
+        "properties": {
+        "environment_type_and_requirements": { "type": "string" },
+        "configuration_settings_and_restrictions": { "type": "string" },
+        "additional_information": { "type": "string" }
+        },
+        "required": [
+          "environment_type_and_requirements"
+        ]
+
     },
 
     "physical_security": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "mechanisms_and_actions_required": { "type": "string" },
+        "user_placed_tamper_seals": {
+          "type": "object",
+          "properties": {
+            "number": { "type": "string" },
+            "placement": { "type": "string" },
+            "surface_preparation": { "type": "string" },
+            "operator_responsible": { "type": "string" },
+            "part_numbers": { "type": "string" }
+          }
+        },        
+        "filler_panels": { "type": "string" },
+        "fault_induction_mitigation": { "type": "string" },
+        "efp_eft_information": { "type": "string" },
+        "hardness_testing_temperature_ranges": { "type": "string" },
+        "additional_information": { "type": "string" }
+      },
+      "required": []
     },
 
     "non_invasive_security": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "mitigation_techniques": { "type": "string" },
+        "effectiveness": { "type": "string" },
+        "additional_information": { "type": "string" }
+      },
+      "required": []
     },
 
     "sensitive_security_parameters_management": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "storage_areas": { "type": "string" },
+        "input_output_methods": { "type": "string" },
+        "zeroization_methods": { "type": "string" },
+        "ssps": { "type": "string" },
+        "transitions": { "type": "string" },
+        "additional_information": { "type": "string" }
+      },
+      "required": [
+        "storage_areas",
+        "input_output_methods",
+        "zeroization_methods",
+        "ssps"
+      ]
     },
 
     "self_tests": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "pre_operational": { "type": "string" },
+        "conditional": { "type": "string" },
+        "periodic_information": { "type": "string" },
+        "error_states": { "type": "string" },
+        "operator_initiation": { "type": "string" },
+        "additional_information": { "type": "string" }
+      },
+      "required": [
+        "pre_operational",
+        "conditional",
+        "periodic_information",
+        "error_states"
+      ]
     },
        
     "life_cycle_assurance": {
-      "type": "object"
+      "type": "object",
+       "properties": {
+        "installation_initialization_startup": { "type": "string" },
+        "administrator_guidance": { "type": "string" },
+        "non_administrator_guidance": { "type": "string" },
+        "design_and_rules": { "type": "string" },
+        "maintenance_requirements": { "type": "string" },
+        "end_of_life": { "type": "string" },
+        "additional_information": { "type": "string" }
+       },
+      "required": [
+        "installation_initialization_startup",
+        "administrator_guidance",
+        "non_administrator_guidance"
+      ]
     },
 
     "mitigation_of_other_attacks": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "attack_list": { "type": "string" },
+        "mitigation_effectiveness": { "type": "string" },
+        "guidance_and_constraints": { "type": "string" },
+        "additional_information": { "type": "string" }
+      },
+      "required": []
     }
 
-    
   }
 }
