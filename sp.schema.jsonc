@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.com/product.schema.json",
+  "$id": "https://example.com/fips-140-3-security-policy.schema.json",
   "title": "FIPS 140-3 Security Policy",
   "description": "Schema for FIPS 140-3 Non-Proprietary Security Policy documents",
   "type": "object",
@@ -31,6 +31,7 @@
             "vendor_affirmed_environments": { "type": "string" }
           }
         },
+        // can be a table
         "excluded_components": { "type": "string" },
         "modes_of_operation": {
           "type": "object",
@@ -50,8 +51,7 @@
             "non_approved_no_security": { "type": "string" },
             "non_approved_not_allowed": { "type": "string" }
           },
-          "required": ["approved"]
-
+          "required": ["approved", "vendor_affirmed", "non_approved_allowed", "non_approved_no_security", "non_approved_not_allowed"]
         },
         "security_function_implementations": { "type": "string" },
         "algorithm_specific_information": { "type": "string" },
@@ -61,7 +61,7 @@
         "industry_protocols": { "type": "string" },
         "additional_information": { "type": "string" }
       },
-      "required":  [
+      "required": [
         "description",
         "tested_and_vendor_affirmed_module_identification",
         "excluded_components",
@@ -78,7 +78,8 @@
 
     "cryptographic_module_interfaces": {
       "type": "object",
-        "properties": {
+      "properties": {
+        // table
         "ports_and_interfaces": { "type": "string" },
         "trusted_channel_specification": { "type": "string" },
         "control_interface_not_inhibited": { "type": "string" },
@@ -89,7 +90,7 @@
 
     "roles_services_authentication": {
       "type": "object",
-        "properties": {
+      "properties": {
         "authentication_methods": { "type": "string" },
         "roles": { "type": "string" },
         "approved_services": { "type": "string" },
@@ -108,31 +109,30 @@
       ]
     },
 
-     "software_firmware_security": {
+    "software_firmware_security": {
       "type": "object",
-        "properties": {
+      "properties": {
         "integrity_techniques": { "type": "string" },
         "initiate_on_demand": { "type": "string" },
         "open_source_parameters": { "type": "string" },
         "additional_information": { "type": "string" }
-        },
-        "required": [
-          "integrity_techniques", 
-          "initiate_on_demand"
-        ]
+      },
+      "required": [
+        "integrity_techniques", 
+        "initiate_on_demand"
+      ]
     },
 
     "operational_environment": {
       "type": "object",
-        "properties": {
+      "properties": {
         "environment_type_and_requirements": { "type": "string" },
         "configuration_settings_and_restrictions": { "type": "string" },
         "additional_information": { "type": "string" }
-        },
-        "required": [
-          "environment_type_and_requirements"
-        ]
-
+      },
+      "required": [
+        "environment_type_and_requirements"
+      ]
     },
 
     "physical_security": {
@@ -154,8 +154,7 @@
         "efp_eft_information": { "type": "string" },
         "hardness_testing_temperature_ranges": { "type": "string" },
         "additional_information": { "type": "string" }
-      },
-      "required": []
+      }
     },
 
     "non_invasive_security": {
@@ -164,8 +163,7 @@
         "mitigation_techniques": { "type": "string" },
         "effectiveness": { "type": "string" },
         "additional_information": { "type": "string" }
-      },
-      "required": []
+      }
     },
 
     "sensitive_security_parameters_management": {
@@ -206,7 +204,7 @@
        
     "life_cycle_assurance": {
       "type": "object",
-       "properties": {
+      "properties": {
         "installation_initialization_startup": { "type": "string" },
         "administrator_guidance": { "type": "string" },
         "non_administrator_guidance": { "type": "string" },
@@ -214,7 +212,7 @@
         "maintenance_requirements": { "type": "string" },
         "end_of_life": { "type": "string" },
         "additional_information": { "type": "string" }
-       },
+      },
       "required": [
         "installation_initialization_startup",
         "administrator_guidance",
@@ -229,9 +227,21 @@
         "mitigation_effectiveness": { "type": "string" },
         "guidance_and_constraints": { "type": "string" },
         "additional_information": { "type": "string" }
-      },
-      "required": []
+      }
     }
-
-  }
+  },
+  "required": [
+    "general",
+    "cryptographic_module_specification",
+    "cryptographic_module_interfaces",
+    "roles_services_authentication",
+    "software_firmware_security",
+    "operational_environment",
+    "physical_security",
+    "non_invasive_security",
+    "sensitive_security_parameters_management",
+    "self_tests",
+    "life_cycle_assurance",
+    "mitigation_of_other_attacks"
+  ]
 }
