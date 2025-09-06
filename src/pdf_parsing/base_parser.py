@@ -83,7 +83,8 @@ def process_pdfs_recursively(input_dir: str = "data/input", output_base_dir: str
         return
     
     print(f"🔍 Found {len(pdf_files)} PDF files to process")
-    
+    count = 1
+
     for pdf_file in pdf_files:
         try:
             # Calculate relative path from input_dir to preserve structure
@@ -91,20 +92,21 @@ def process_pdfs_recursively(input_dir: str = "data/input", output_base_dir: str
             
             # Create corresponding output directory
             output_dir = output_base_path / relative_path.parent
-            
+            print(f"\nOn {count} / {len(pdf_files)}")
             print(f"\n📄 Processing: {pdf_file}")
             print(f"📁 Output dir: {output_dir}")
-            
+
             # Parse the PDF
             result = parse_pdf_with_docling(
                 pdf_path=str(pdf_file),
-                output_dir=str(output_dir), 
+                output_dir=str(output_dir),
             )
             
             if result:
                 print(f"✅ Successfully processed: {pdf_file.name}")
             else:
                 print(f"❌ Failed to process: {pdf_file.name}")
+            count += 1
                 
         except Exception as e:
             print(f"❌ Error processing {pdf_file}: {e}")
