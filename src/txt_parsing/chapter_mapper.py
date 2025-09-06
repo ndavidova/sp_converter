@@ -4,6 +4,7 @@ Simple chapter mapper that finds text between main chapter boundaries.
 import json
 from dataclasses import dataclass, field, asdict
 from typing import List, Iterator, Tuple
+import re, regex
 
 from schema_loader import SchemaLoader
 FILENAME = "38fc95162021cc1a"
@@ -117,37 +118,17 @@ def traverse(lst) -> Iterator[tuple[str, Tuple[int, int]]]:
         for j, sub in enumerate(chapter.subchapters, 1):
             yield sub.title, (i, j)
 
-
-def create_chapter_numbers(chapter_num, subchapter_num):
-    number = str(chapter_num)
+def chapter_regex(chapter_num, subchapter_num):
+    number_pattern = str(chapter_num)
+    chapter = chapters[chapter_num - 1].title
     if subchapter_num > 0:
-        number += "." + str(subchapter_num)
-
-    start_symbols = "## ", "##", "", "Section", "## Section "
-    end_symbols = ".", "", " -", "-"
-
-    res = []
-    for start_symbol in start_symbols:
-        for end_symbol in end_symbols:
-            res.append(start_symbol + number + end_symbol)
-
-    return res
-
-
-def create_chapter_texts(chapter_num, subchapter_num):
-    res = []
-
-    if subchapter_num > 0:
+        number_pattern += r"\." + str(subchapter_num)
         chapter = chapters[chapter_num - 1].subchapters[subchapter_num - 1].title
-    else:
-        chapter = chapters[chapter_num - 1].title
 
-    for number in create_chapter_numbers(chapter_num, subchapter_num):
-       res.append(number + chapter)
-       res.append(number + " " + chapter)
+    chapter = re.sub(r"[ \-–—‒]", "", chapter)
 
-    return res
-
+    full_pattern = rf"^(##|Section)*{number_pattern}\.?{chapter}$"
+    return full_pattern
 
 def extract_chapters_from_text(text: str):
     """
@@ -171,25 +152,23 @@ def extract_chapters_from_text(text: str):
 
         chapter_found = False
         # traverse through all chapter texts
-        if stripped_line.startswith("##") or stripped_line[0].isnumeric():
+        if stripped_line.startswith("##") or not stripped_line[0].isalpha():
             for _, (num, sub_num) in traverse(chapters):
                 if num < current_chapter_num:
                     continue
-                for title in create_chapter_texts(num, sub_num):
-                    if stripped_line.lower().startswith(title.lower()):
-                        if num > current_chapter_num + 1:
-                            print("Warning, chapter number was increased by more than 1, it's possible that a chapter was skipped, this might need manual review! ⚠️")
-                        if sub_num > current_subchapter_num + 1:
-                            print("Warning, subchapter number was increased by more than 1, it's possible that a subchapter was skipped, this might need manual review! ⚠️")
-                        inside_chapter = True
-                        current_chapter_num = num
-                        current_subchapter_num = sub_num
-                        if current_subchapter_num > 0:
-                            chapters[current_chapter_num - 1].subchapters[current_subchapter_num - 1].found = True
-                        else:
-                            chapters[current_chapter_num - 1].found = True
-                        chapter_found = True
-                        break
+                sub_lower = re.sub(r"[ \-–—‒]", "",stripped_line)
+                ## Match regex with 1 allowed error
+                pattern = regex.compile(f"({chapter_regex(num, sub_num)}){{e<=1}}", flags=regex.IGNORECASE)
+                if pattern.match(sub_lower):
+                    inside_chapter = True
+                    current_chapter_num = num
+                    current_subchapter_num = sub_num
+                    if current_subchapter_num > 0:
+                        chapters[current_chapter_num - 1].subchapters[current_subchapter_num - 1].found = True
+                    else:
+                        chapters[current_chapter_num - 1].found = True
+                    chapter_found = True
+                    break
                 if chapter_found:
                     break
 
@@ -199,38 +178,42 @@ def extract_chapters_from_text(text: str):
             else:
                 chapters[current_chapter_num - 1].content += "\n" + stripped_line
 
-def export_chapters_to_json():
-    chapters_dict = [asdict(ch) for ch in chapters]
 
-    with open("../../data/output/json/" + FILENAME + ".json", "w", encoding="utf-8") as f:
-        json.dump(chapters_dict, f, indent=4)
 
 def check_chapter_content():
     count = 0
+    error = 0
     for i, chapter in enumerate(chapters, 1):
         if not chapter.found:
             print("⚠️ Chapter not found " + str(i) + "!!!")
+            error += 1
         for j, sub in enumerate(chapter.subchapters, 1):
             if not sub.content:
                 count += 1
                 if not sub.optional:
-                    print("Warning, non-optional subchapter number " + str(j) + " has no content.")
+                    print("⚠️ Warning, non-optional subchapter number " + str(i) + "." + str(j) + " has no content.")
+                    error += 1
                 else:
                     print("Optional subchapter " + str(i) + "." + str(j) + " has no content.")
             if not sub.found and not sub.optional:
-                print("Subchapter not found " +  str(i) + "." + str(j) + "!")
+                print("⚠️ Non-optional subchapter not found " +  str(i) + "." + str(j) + "!")
+                error += 1
     print("Total subchapters: " + str(count) + " are empty")
+    return error, count
 
 
+def export_chapters_to_json():
+    print(f"\nExporting file as json ... {FILENAME}.json")
+    chapters_dict = [asdict(ch) for ch in chapters]
 
+    with open("data/output/json/" + FILENAME + ".json", "w", encoding="utf-8") as f:
+        json.dump(chapters_dict, f, indent=4)
 
 def main():
-    with open("../../data/output/base/SP/" + FILENAME + ".txt") as f:
+    with open("data/output/base/SP/" + FILENAME + ".txt") as f:
         extract_chapters_from_text(f.read())
-    check_chapter_content()
-    print("Do you want to continue and export chapters to json? (y/n): ")
-    answer = input()
-    if answer == "y":
+    error, _ = check_chapter_content()
+    if not error:
         export_chapters_to_json()
 
 
