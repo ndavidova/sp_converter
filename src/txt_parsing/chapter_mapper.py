@@ -6,8 +6,6 @@ from dataclasses import dataclass, field, asdict
 from typing import List, Iterator, Tuple
 import re, regex
 
-from schema_loader import SchemaLoader
-FILENAME = "38fc95162021cc1a"
 
 @dataclass
 class Chapter:
@@ -17,7 +15,7 @@ class Chapter:
     content: str = ""
     found: bool = False
 
-chapters: List[Chapter] = [
+global_chapters: List[Chapter] = [
     Chapter("General", [
         Chapter("Overview", []),
         Chapter("Security Levels", []),
@@ -120,10 +118,10 @@ def traverse(lst) -> Iterator[tuple[str, Tuple[int, int]]]:
 
 def chapter_regex(chapter_num, subchapter_num):
     number_pattern = str(chapter_num)
-    chapter = chapters[chapter_num - 1].title
+    chapter = global_chapters[chapter_num - 1].title
     if subchapter_num > 0:
         number_pattern += r"\." + str(subchapter_num)
-        chapter = chapters[chapter_num - 1].subchapters[subchapter_num - 1].title
+        chapter = global_chapters[chapter_num - 1].subchapters[subchapter_num - 1].title
 
     chapter = re.sub(r"[ \-–—‒]", "", chapter)
 
@@ -143,6 +141,7 @@ def extract_chapters_from_text(text: str):
     current_subchapter_num: int = 0
     inside_chapter = False
 
+    chapters = global_chapters
     lines = text.split('\n')
 
     for line in lines:
@@ -177,10 +176,11 @@ def extract_chapters_from_text(text: str):
                 chapters[current_chapter_num - 1].subchapters[current_subchapter_num - 1].content += "\n" + stripped_line
             else:
                 chapters[current_chapter_num - 1].content += "\n" + stripped_line
+    return chapters
 
 
 
-def check_chapter_content():
+def check_chapter_content(chapters: List[Chapter]) -> Tuple[int, int]:
     count = 0
     error = 0
     for i, chapter in enumerate(chapters, 1):
@@ -202,19 +202,26 @@ def check_chapter_content():
     return error, count
 
 
-def export_chapters_to_json():
-    print(f"\nExporting file as json ... {FILENAME}.json")
+def export_chapters_to_json(chapters: List[Chapter], file_name: str, output_dir: str = "data/output/json"):
+    """
+    Args:
+        chapters (List[Chapter]): Chapters to export
+        file_name (str): Name for the final json file (just stem)
+        output_dir (str): Optional output directory for results
+    """
+    print(f"\n📄 Exporting file as json ... {output_dir}/{file_name}.json")
     chapters_dict = [asdict(ch) for ch in chapters]
 
-    with open("data/output/json/" + FILENAME + ".json", "w", encoding="utf-8") as f:
+    with open(output_dir + "/" + file_name + ".json", "w", encoding="utf-8") as f:
         json.dump(chapters_dict, f, indent=4)
 
 def main():
-    with open("data/output/base/SP/" + FILENAME + ".txt") as f:
-        extract_chapters_from_text(f.read())
-    error, _ = check_chapter_content()
+    file_name = "38fc95162021cc1a"
+    with open("data/input/SP/fullset" + "/" + file_name + ".txt") as f:
+        chapters = extract_chapters_from_text(f.read())
+    error, _ = check_chapter_content(chapters)
     if not error:
-        export_chapters_to_json()
+        export_chapters_to_json(chapters, file_name)
 
 
 
