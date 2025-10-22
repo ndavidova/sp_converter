@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Approved Algorithms",
+    "section": 2,
+    "subsection": 5
+  },
+  {
+    "name": "Vendor-Affirmed Algorithms",
+    "section": 2,
+    "subsection": 5
+  },
+  {
+    "name": "Non-Approved, Allowed Algorithms",
+    "section": 2,
+    "subsection": 5
+  },
+  {
+    "name": "Non-Approved, Allowed Algorithms with No Security Claimed",
+    "section": 2,
+    "subsection": 5
+  },
+  {
+    "name": "Non-Approved, Not Allowed Algorithms",
+    "section": 2,
+    "subsection": 5
+  },
+  {
+    "name": "",
+    "section": 1,
+    "subsection": 2
+  }
+]

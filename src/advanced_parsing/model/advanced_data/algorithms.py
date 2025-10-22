@@ -1,8 +1,8 @@
 
 from dataclasses import dataclass
-from model.table_entry import TableEntry
+from ..table_entry import TableEntry
 
-# Tables 8-12
+# Tables 5,6,7,8,9
 # AlgoProp is actually a Key:Value pair, but for simplicity it is represented as a string
 
 @dataclass
@@ -12,7 +12,7 @@ class ApprovedAlgo(TableEntry):
     properties: str
     reference: str
 
-# Used for tables 6,7
+# Used for tables
 @dataclass
 class Algo(TableEntry):
     name: str

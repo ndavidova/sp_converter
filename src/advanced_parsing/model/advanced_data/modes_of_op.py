@@ -7,4 +7,4 @@ class ModeOfOp:
     name: str
     description: str
     type: str
-    statusIndicator: str # optional column
+    statusIndicator: str = "" # optional column
