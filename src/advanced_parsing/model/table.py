@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Generic, List, Tuple, Type, TypeVar
+from typing import Generic, List, Type, TypeVar
 from .table_entry import TableEntry
 
 
@@ -12,5 +12,3 @@ class Table(Generic [T]):
     entry_type: Type[T]
     found: bool = False
     entries: List[T] = field(default_factory=list)
-    # header: List[str]
-    # optional: List[bool]

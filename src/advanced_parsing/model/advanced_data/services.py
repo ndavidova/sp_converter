@@ -10,6 +10,8 @@ class ApprovedService:
     inputs: str
     outputs: str
     secFunImpl: str
+    roles: str
+    rolesSspAccess: str = ""
 
 class NonApprovedService:
     name: str

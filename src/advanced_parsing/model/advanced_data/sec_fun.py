@@ -1,10 +1,12 @@
 from dataclasses import dataclass
 
-# Table 13, it is a nested table, will be skipped for now
+# In the Table Descriptions document this looks like a nested table, there is [O] column followed by non [O] column
 
 @dataclass
 class SecFuncImpl:
     name: str
     type: str
     description: str
-    properties: str
+    properties: str = ""
+    algorithms: str = ""
+    algorithm_properties = ""

@@ -8,17 +8,19 @@ def parse_markdown_tables(text: str):
     The first row in each table is the header. Repeated header rows
     (e.g. multipage header repeats) are skipped.
     """
+
+    filtered_lines = []
+    for line in text.strip().split('\n'):
+        if line.strip().startswith('|'):
+            filtered_lines.append(line)
+
+    filtered_text = '\n'.join(filtered_lines)
+
+    if not filtered_text:
+        return []
+
     md = MarkdownIt("gfm-like")
-    tokens = md.parse(text)
-
-    current_table = None
-    header = None
-
-    # per-row / per-cell working state
-    row = None
-    current_cell = None
-    current_cell_is_header = False
-    row_header_flags = None
+    tokens = md.parse(filtered_text)
 
     def is_separator_row(cells):
         """Return True if all cells are made only of '-', ':', or spaces."""

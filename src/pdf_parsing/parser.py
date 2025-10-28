@@ -33,38 +33,3 @@ def parse_pdf_to_text(pdf_path: Path, output_dir: str | None = None ):
         print(f"Text saved to: {text_file}")
 
     return result.document
-
-def find_pdf_files(input_dir: Path) -> List[Path]:
-    if not input_dir.exists():
-        print(f"Input directory does not exist: {input_dir}")
-        return []
-    
-    return list(input_dir.rglob("*.pdf"))
-
-
-def process_pdfs(input_dir: Path, output_dir: Path) -> Tuple[int, int]:
-    pdf_files = find_pdf_files(input_dir)
-
-    print(f"Found {len(pdf_files)} PDF files to process")
-    count = 1
-    fail = 0
-
-    for pdf_file in pdf_files:
-        output_file = output_dir / (pdf_file.stem + ".txt")
-        if output_file.exists():
-            print(f"Skipping {pdf_file.name}, already processed as {output_file.name}")
-            count += 1
-            continue
-
-        # Create corresponding output directory
-        print(f"\nOn {count} / {len(pdf_files)}, failed {fail}")
-        print(f"\nProcessing: {pdf_file}")
-        print(f"Output dir: {output_dir}")
-
-        # Parse the PDF
-        if parse_pdf_to_text(pdf_file, output_dir):
-            count += 1
-        else:
-            fail += 1
-
-    return count, fail

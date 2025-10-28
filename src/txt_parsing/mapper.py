@@ -1,10 +1,10 @@
 import copy
 import logging
-from typing import List, Tuple
+from typing import List
 import re, regex
 
-from txt_parsing.chapter import Chapter
-from ..utils.chapter_utils import traverse_chapters
+from models.chapter import Chapter
+from .chapter_utils import traverse_chapters
 
 
 logger = logging.getLogger(__name__)
@@ -25,7 +25,7 @@ def build_chapter_regex(chapters: List[Chapter], chapter_num: int, subchapter_nu
     return rf"^(##|Section)*{chapter_num}(\.?{subchapter_num})?\.?{title}$"
 
 # Core extraction logic
-def extract_chapters_from_text(text: str, base_chapters = List[Chapter]):
+def extract_chapters_from_text(text: str, base_chapters: List[Chapter]) -> List[Chapter]:
     """
     Extract text between chapter boundaries from the given text.
     """

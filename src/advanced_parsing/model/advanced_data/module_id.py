@@ -8,12 +8,14 @@ class TestedHw:
     processors: str
     features: str # optional
 
+@dataclass
 class TestedSwFwHy:
     packageFileName: str
     swFwVersion: str
     features: str # optional
     integrityTest: str
 
+@dataclass
 class TestedHyHw:
     modelPartNum: str
     hwVersion: str
@@ -21,6 +23,7 @@ class TestedHyHw:
     processors: str # optional
     features: str # optional
 
+@dataclass
 class TestedOpEnvSwFwHy:
     operatingSystem: str
     hardwarePlatform: str
@@ -29,6 +32,7 @@ class TestedOpEnvSwFwHy:
     hypervisorHostOs: str # optional
     version: str
 
+@dataclass
 class OpEnvSwFwHyVA:
     operatingSystem: str
     hardwarePlatform: str

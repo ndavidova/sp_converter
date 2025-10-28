@@ -1,6 +1,6 @@
 import logging
 from typing import List, Tuple
-from txt_parsing.chapter import Chapter
+from models.chapter import Chapter
 
 logger = logging.getLogger(__name__)
 

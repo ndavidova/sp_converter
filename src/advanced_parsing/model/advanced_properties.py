@@ -15,13 +15,6 @@ from .advanced_data.self_tests import *
 from .advanced_data.services import *
 from .advanced_data.ssp import *
 
-"""
-Definitions for classes are inspired by json https://csrc.nist.gov/csrc/media/Projects/cryptographic-module-validation-program/documents/fips%20140-3/Module%20Processes/SchemaMis-2.8.4.json
-and for table description and additional info was followed this document: https://csrc.nist.gov/csrc/media/Projects/cryptographic-module-validation-program/documents/fips%20140-3/Module%20Processes/MIS%20Table%20Descriptions%20-%20V2.8.4.pdf 
-"""
-# good example is c73e0da9ae79c7cc
-
-
 @dataclass
 class AdvancedProperties:    
     # Security Levels
@@ -68,33 +61,44 @@ class AdvancedProperties:
         default_factory=lambda: Table("Non-Approved, Not Allowed Algorithms", 2, 5, NonApprovedNonAllowedAlgo)
     )
 
-    # sec_fun
-
-    # Currently I don't know according to what they would be parsed
-    # entropy_certificates: Table[esvCert] = Table()
-    # entropy_certificates_itar: Table[esvItarCert]
-    # entropy_sources: Table[entropySource]
-
-    # key (3)
-
-    # Ports
+    # Ports and Interfaces
     ports_interfaces: Table[PortInterface] = field(
         default_factory=lambda: Table("", 3, 1, PortInterface)
     )
 
-    # Auth Method
+    # Authentication Methods
+    authentication_methods: Table[AuthMethod] = field(
+        default_factory=lambda: Table("", 4, 1, AuthMethod)
+    )
     roles: Table[Role] = field(
         default_factory=lambda: Table("", 4, 2, Role)
     )
 
-    # approved_services: Table[ApprovedService]
-    # non_approved_services: Table[NonApprovedService]
+    # Services
+    approved_services: Table[ApprovedService] = field(
+        default_factory=lambda: Table("", 4, 3, ApprovedService)
+    )
+    non_approved_services: Table[NonApprovedService] = field(
+        default_factory=lambda: Table("", 4, 4, NonApprovedService)
+    )
 
-    # Other 2 are skipped
-    # mechanisms_actions: Table[PhSecMechanism]
+    # Physical Security
+    mechanisms_actions: Table[PhSecMechanism] = field(
+        default_factory=lambda: Table("", 7, 1, PhSecMechanism)
+    )
 
-    # ssp (4)
+    # SSPs
+    storage_areas: Table[StorageArea] = field(
+        default_factory=lambda: Table("", 9, 1, StorageArea)
+    )
 
+    ssp_io_methods : Table[SspIOMethod] = field(
+        default_factory=lambda: Table("", 9, 2, SspIOMethod)
+    )
+
+    ssp_zeroization_methods : Table[SspZeroization] = field(
+        default_factory=lambda: Table("", 9, 3, SspZeroization)
+    )
     # Self Tests
     self_tests: Table[SelfTest] = field(
         default_factory=lambda: Table("", 10, 1, SelfTest)
@@ -107,4 +111,3 @@ class AdvancedProperties:
     error_states: Table[ErrorState] = field(
         default_factory=lambda: Table("", 10, 4, ErrorState)
     )
-

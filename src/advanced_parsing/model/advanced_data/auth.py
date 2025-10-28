@@ -1,10 +1,17 @@
 from dataclasses import dataclass
 
 # Tables 20, 21
+@dataclass
+class AuthMethod:
+    name: str
+    description: str
+    mechanism: str
+    strength: str
+    perMinute: str = ""
 
+@dataclass
 class Role:
     name: str
-    # Can be one of: “Role” “Identify” “Multi-Factor Identity”, but now for simplicity will be just str
     type: str
     operatorType: str
     authMethodList: str
