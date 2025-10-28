@@ -4,24 +4,16 @@
     "subchapters": [
       {
         "title": "Overview",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Security Levels",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Additional Information",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       }
     ],
     "optional": false,
@@ -33,87 +25,52 @@
     "subchapters": [
       {
         "title": "Description",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Tested and vendor affirmed module version and identification",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Excluded components",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Modes of operation",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Algorithms",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Security Function Implementations",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Algorithm Specific Information",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "RBG and Entropy",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Key Generation",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Key Establishment",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Industry protocols",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Additional Information",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       }
     ],
     "optional": false,
@@ -125,31 +82,22 @@
     "subchapters": [
       {
         "title": "Ports and interfaces",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Trusted Channel Specification",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Control Interface Not Inhibited",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Additional Information",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       }
     ],
     "optional": false,
@@ -161,59 +109,38 @@
     "subchapters": [
       {
         "title": "Authentication methods",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Roles",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Approved Services",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Non-Approved Services",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "External Software/Firmware Loaded",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Bypass Actions and Status",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Cryptographic Output Actions and Status",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Additional Information",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       }
     ],
     "optional": false,
@@ -225,31 +152,21 @@
     "subchapters": [
       {
         "title": "Integrity Techniques",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Initiate on Demand",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Open-Source Parameters",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Additional Information",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       }
     ],
     "optional": false,
@@ -261,24 +178,17 @@
     "subchapters": [
       {
         "title": "Operational Environment Type and Requirements",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Configuration Settings and Restriction",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Additional Information",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       }
     ],
     "optional": false,
@@ -291,51 +201,37 @@
       {
         "title": "Mechanisms and Actions Required",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "User Placed Tamper Seals",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Filler Panels",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Fault Induction Mitigation",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "EFP/EFT Information",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Hardness Testing Temperature Ranges",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Additional Information",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       }
     ],
     "optional": false,
@@ -348,23 +244,17 @@
       {
         "title": "Mitigation Techniques",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Effectiveness",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Additional Information",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       }
     ],
     "optional": false,
@@ -376,45 +266,29 @@
     "subchapters": [
       {
         "title": "Storage Areas",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "SSP Input-Output Methods",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "SSP Zeroization Methods",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "SSPs",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Transitions",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Additional Information",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       }
     ],
     "optional": false,
@@ -426,45 +300,29 @@
     "subchapters": [
       {
         "title": "Pre-Operational Self-Tests",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Conditional Self-Tests",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Periodic Self-Test Information",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Error States",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Operator Initiation of Self-Tests",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Additional Information",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       }
     ],
     "optional": false,
@@ -476,52 +334,35 @@
     "subchapters": [
       {
         "title": "Installation, Initialization, and Startup Procedures",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Administrator Guidance",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Non-Administrator Guidance",
-        "subchapters": [],
-        "optional": false,
-        "content": "",
-        "found": false
+        "subchapters": []
       },
       {
         "title": "Design and Rules",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Maintenance Requirements",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "End of Life",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Additional Information",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       }
     ],
     "optional": false,
@@ -534,30 +375,22 @@
       {
         "title": "Attack List",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Mitigation Effectiveness",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Guidance and Constraints",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       },
       {
         "title": "Additional Information",
         "subchapters": [],
-        "optional": true,
-        "content": "",
-        "found": false
+        "optional": true
       }
     ],
     "optional": false,

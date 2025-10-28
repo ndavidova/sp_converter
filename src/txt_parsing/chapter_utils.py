@@ -1,7 +1,8 @@
 from dataclasses import asdict
 import json
+from pathlib import Path
 from typing import Iterator, List, Tuple
-from .chapter import Chapter
+from models.chapter import Chapter
 
 
 def traverse_chapters(chapters: List[Chapter]) -> Iterator[tuple[str, Tuple[int, int]]]:
@@ -12,10 +13,11 @@ def traverse_chapters(chapters: List[Chapter]) -> Iterator[tuple[str, Tuple[int,
             yield sub.title, (i, j)
 
 
-def chapters_to_json(chapters: List[Chapter], file_name: str, output_dir: str = ".", indent: int = 4) -> str:
+def chapters_to_json(chapters: List[Chapter], file: Path, output_dir: Path, indent: int = 4) -> None:
     """Save chapter structure into formatted JSON."""
-    print(f"\nExporting file as json ... {output_dir}/{file_name}.json")
-    with open(output_dir + "/" + file_name + ".json", "w", encoding="utf-8") as f:
+    filename = file.stem
+    print(f"\nExporting file as json ... {output_dir}/{filename}.json")
+    with open(output_dir / (filename + ".json"), "w", encoding="utf-8") as f:
         json.dump([asdict(ch) for ch in chapters], f, indent=indent)
 
 
@@ -30,7 +32,10 @@ def chapter_from_dict(data: dict) -> Chapter:
     )
 
 
-def chapters_from_json(json_str: str) -> List[Chapter]:
+def chapters_from_json(file_path: Path) -> List[Chapter]:
     """Load a list of Chapter objects from a JSON string."""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        json_str = f.read()
     data = json.loads(json_str)
     return [chapter_from_dict(ch) for ch in data]
+
