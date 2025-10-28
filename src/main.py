@@ -40,7 +40,7 @@ def map_chapters(input_dir: Path, output_dir: Path, base_chapters_path: Path):
     files = list(input_dir.rglob("*.txt"))
     print(f"Found {len(files)} txt files to process")
 
-    conn = setup_db_files("file_database.db")
+    conn = setup_db_files("data/output/db/file_database.db")
 
     base_chapters = chapters_from_json(base_chapters_path)
 
