@@ -68,10 +68,3 @@ def process_pdfs(input_dir: Path, output_dir: Path) -> Tuple[int, int]:
             fail += 1
 
     return count, fail
-
-def main():
-   process_pdfs(Path("../Downloads"), Path("test_round")) 
-
-
-if __name__ == "__main__":
-    main()
