@@ -1,0 +1,4 @@
+docling==2.51.0
+fuzzysearch==0.8.0
+regex==2025.9.1
+sec_certs==0.3.2
