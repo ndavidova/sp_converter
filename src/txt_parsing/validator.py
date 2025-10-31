@@ -13,9 +13,9 @@ def validate_chapters(chapters: List[Chapter]) -> Tuple[int, int]:
             logger.warning("Chapter not found " + str(i) + "!!!")
             error += 1
         for j, sub in enumerate(chapter.subchapters, 1):
-            if not sub.content:
+            if not sub.content or not sub.found:
                 count += 1
-                msg =("Subchapter number " + str(i) + "." + str(j) + " has no content.")
+                msg =("Subchapter number " + str(i) + "." + str(j) + " has no content / not found.")
                 logger.warning(msg if not sub.optional else f"Optional {msg}")
                 if not sub.optional:
                     error += 1
