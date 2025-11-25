@@ -13,3 +13,6 @@ BASE_CHAPTERS = "src/config/base_chapters.json"
 
 # Database
 DB_NAME = "data/output/db/more_errors.db"
+
+# Formatting
+INDENT = 4

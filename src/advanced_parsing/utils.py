@@ -1,9 +1,12 @@
-import json
 from dataclasses import asdict, fields, is_dataclass
+import json
 from pathlib import Path
-
-from .model.advanced_properties import AdvancedProperties
+import logging
 from .model.table import Table
+from .model.advanced_properties import AdvancedProperties
+from config.constants import INDENT
+
+logger = logging.getLogger(__name__)
 
 
 def table_asdict(table: Table):
@@ -25,12 +28,10 @@ def adv_asdict(adv: AdvancedProperties):
     return res
 
 
-def export_adv_prop_to_json(
-    data: AdvancedProperties, file: Path, output_dir: Path, indent: int = 4
-):
+def export_adv_prop_to_json(data: AdvancedProperties, file: Path, output_dir: Path):
     output_path = output_dir / f"{file.stem}.json"
-    print(f"Exporting file to {output_path}")
+    logger.info(f"Exporting file to {output_path}")
     if not is_dataclass(data):
         raise TypeError("Expected a dataclass instance (e.g., AdvancedProperties)")
     with output_path.open("w", encoding="utf-8") as f:
-        json.dump(adv_asdict(data), f, indent=indent)
+        json.dump(adv_asdict(data), f, indent=INDENT)
