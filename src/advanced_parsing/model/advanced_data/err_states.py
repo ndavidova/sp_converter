@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 # Table 36
 
+
 @dataclass
 class ErrorState:
     name: str

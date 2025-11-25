@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 # Table 7
 @dataclass
 class ModeOfOp:

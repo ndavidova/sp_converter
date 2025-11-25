@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 # Tables 22-23, nested tables, for now will be skipped
 
+
 @dataclass
 class ApprovedService:
     name: str
@@ -12,6 +13,7 @@ class ApprovedService:
     secFunImpl: str
     roles: str
     rolesSspAccess: str = ""
+
 
 class NonApprovedService:
     name: str

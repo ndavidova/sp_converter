@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 # Table 1
 @dataclass
 class SecurityLevel:

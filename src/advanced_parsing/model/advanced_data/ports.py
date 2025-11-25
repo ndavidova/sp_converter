@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 # Table 19
 @dataclass
 class PortInterface:
