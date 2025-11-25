@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from .table import Table
+
 from .advanced_data.algorithms import *
 from .advanced_data.auth import *
 from .advanced_data.entropy import *
@@ -14,9 +14,11 @@ from .advanced_data.sec_levels import *
 from .advanced_data.self_tests import *
 from .advanced_data.services import *
 from .advanced_data.ssp import *
+from .table import Table
+
 
 @dataclass
-class AdvancedProperties:    
+class AdvancedProperties:
     # Security Levels
     security_levels: Table[SecurityLevel] = field(
         default_factory=lambda: Table("", 1, 2, SecurityLevel)
@@ -24,19 +26,38 @@ class AdvancedProperties:
 
     # Tested Module Identification
     tested_module_id_hw: Table[TestedHw] = field(
-        default_factory=lambda: Table("Tested Module Identification - Hardware", 2, 2, TestedHw)
+        default_factory=lambda: Table(
+            "Tested Module Identification - Hardware", 2, 2, TestedHw
+        )
     )
     tested_module_id_sw_fw_hy: Table[TestedSwFwHy] = field(
-        default_factory=lambda: Table("Tested Module Identification – Software, Firmware, Hybrid", 2, 2, TestedSwFwHy)
+        default_factory=lambda: Table(
+            "Tested Module Identification – Software, Firmware, Hybrid",
+            2,
+            2,
+            TestedSwFwHy,
+        )
     )
     tested_module_id_hw_hy: Table[TestedHyHw] = field(
-        default_factory=lambda: Table("Tested Module Identification – Hybrid Disjoint Hardware", 2, 2, TestedHyHw)
+        default_factory=lambda: Table(
+            "Tested Module Identification – Hybrid Disjoint Hardware", 2, 2, TestedHyHw
+        )
     )
     tested_op_env_sw_fw_hy: Table[TestedOpEnvSwFwHy] = field(
-        default_factory=lambda: Table("Tested Operational Environments - Software, Firmware, Hybrid", 2, 2, TestedOpEnvSwFwHy)
+        default_factory=lambda: Table(
+            "Tested Operational Environments - Software, Firmware, Hybrid",
+            2,
+            2,
+            TestedOpEnvSwFwHy,
+        )
     )
     vendor_affirmed_op_env_sw_fw_hy: Table[OpEnvSwFwHyVA] = field(
-        default_factory=lambda: Table("Vendor-Affirmed Operational Environments - Software, Firmware, Hybrid", 2, 2, OpEnvSwFwHyVA)
+        default_factory=lambda: Table(
+            "Vendor-Affirmed Operational Environments - Software, Firmware, Hybrid",
+            2,
+            2,
+            OpEnvSwFwHyVA,
+        )
     )
 
     # Modes of Operation
@@ -52,13 +73,20 @@ class AdvancedProperties:
         default_factory=lambda: Table("Vendor-Affirmed Algorithms", 2, 5, Algo)
     )
     non_approved_allowed_algos: Table[Algo] = field(
-        default_factory=lambda: Table("Non-Approved, Allowed Algorithms", 2, 5, Algo) 
-    ) 
+        default_factory=lambda: Table("Non-Approved, Allowed Algorithms", 2, 5, Algo)
+    )
     non_approved_allowed_NSC: Table[NonApprovedAllowedNSC] = field(
-        default_factory=lambda: Table("Non-Approved, Allowed Algorithms with No Security Claimed", 2, 5, NonApprovedAllowedNSC)
+        default_factory=lambda: Table(
+            "Non-Approved, Allowed Algorithms with No Security Claimed",
+            2,
+            5,
+            NonApprovedAllowedNSC,
+        )
     )
     non_approved_not_allowed: Table[NonApprovedNonAllowedAlgo] = field(
-        default_factory=lambda: Table("Non-Approved, Not Allowed Algorithms", 2, 5, NonApprovedNonAllowedAlgo)
+        default_factory=lambda: Table(
+            "Non-Approved, Not Allowed Algorithms", 2, 5, NonApprovedNonAllowedAlgo
+        )
     )
 
     # Ports and Interfaces
@@ -70,9 +98,7 @@ class AdvancedProperties:
     authentication_methods: Table[AuthMethod] = field(
         default_factory=lambda: Table("", 4, 1, AuthMethod)
     )
-    roles: Table[Role] = field(
-        default_factory=lambda: Table("", 4, 2, Role)
-    )
+    roles: Table[Role] = field(default_factory=lambda: Table("", 4, 2, Role))
 
     # Services
     approved_services: Table[ApprovedService] = field(
@@ -92,11 +118,11 @@ class AdvancedProperties:
         default_factory=lambda: Table("", 9, 1, StorageArea)
     )
 
-    ssp_io_methods : Table[SspIOMethod] = field(
+    ssp_io_methods: Table[SspIOMethod] = field(
         default_factory=lambda: Table("", 9, 2, SspIOMethod)
     )
 
-    ssp_zeroization_methods : Table[SspZeroization] = field(
+    ssp_zeroization_methods: Table[SspZeroization] = field(
         default_factory=lambda: Table("", 9, 3, SspZeroization)
     )
     # Self Tests

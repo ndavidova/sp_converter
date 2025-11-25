@@ -1,11 +1,11 @@
 from dataclasses import dataclass, field
 from typing import Generic, List, Type, TypeVar
-from .table_entry import TableEntry
+
+T = TypeVar("T")
 
 
-T = TypeVar("T", bound="TableEntry")
 @dataclass
-class Table(Generic [T]):
+class Table(Generic[T]):
     name: str
     section: int
     subsection: int

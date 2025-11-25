@@ -1,19 +1,26 @@
 import copy
 import logging
+import re
 from typing import List
-import re, regex
 
+import regex
+
+import config.constants as config
 from models.chapter import Chapter
-from .chapter_utils import traverse_chapters
 
+from .chapter_utils import traverse_chapters
 
 logger = logging.getLogger(__name__)
 
+
 def substitute(title: str) -> str:
-    """Remove spaces and dashes for fuzzy matching."""
+    """Remove spaces and dashes."""
     return re.sub(r"[ \-–—‒]", "", title)
 
-def build_chapter_regex(chapters: List[Chapter], chapter_num: int, subchapter_num: int) -> str:
+
+def build_chapter_regex(
+    chapters: List[Chapter], chapter_num: int, subchapter_num: int
+) -> str:
     """Construct a fuzzy regex for chapter titles."""
     base_chapter = chapters[chapter_num - 1]
     title = base_chapter.title
@@ -24,10 +31,17 @@ def build_chapter_regex(chapters: List[Chapter], chapter_num: int, subchapter_nu
 
     return rf"^(##|Section)*{chapter_num}(\.?{subchapter_num})?\.?{title}$"
 
+
 # Core extraction logic
-def extract_chapters_from_text(text: str, base_chapters: List[Chapter]) -> List[Chapter]:
+def extract_chapters_from_text(
+    text: str, base_chapters: List[Chapter]
+) -> List[Chapter]:
     """
-    Extract text between chapter boundaries from the given text.
+    Extract text between chapter boundaries from the given text. Returns a list
+    of chapters and fills the .found attribute and .content attribute to appropriate
+    value. The chapter titles are not a part of the chapter contents. The matching is case
+    insensitive, allows a number of errors in the heading text, which can be configured via
+    config.MAX_DEVIATION.
     """
     chapters = copy.deepcopy(base_chapters)
     curr_chapter, curr_subchapter = 0, 0

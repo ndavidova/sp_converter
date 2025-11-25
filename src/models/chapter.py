@@ -9,6 +9,3 @@ class Chapter:
     optional: bool = False
     content: str = ""
     found: bool = False
-
-
-

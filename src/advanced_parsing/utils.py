@@ -1,9 +1,10 @@
-from dataclasses import asdict, fields, is_dataclass
 import json
+from dataclasses import asdict, fields, is_dataclass
 from pathlib import Path
 
-from .model.table import Table
 from .model.advanced_properties import AdvancedProperties
+from .model.table import Table
+
 
 def table_asdict(table: Table):
     """Exports the Table to a dictionary with required keys."""
@@ -15,6 +16,7 @@ def table_asdict(table: Table):
         "entries": entries_list,
     }
 
+
 def adv_asdict(adv: AdvancedProperties):
     res = {}
     for f in fields(adv):
@@ -22,7 +24,10 @@ def adv_asdict(adv: AdvancedProperties):
         res[f.name] = table_asdict(table)
     return res
 
-def export_adv_prop_to_json(data: AdvancedProperties, file: Path, output_dir: Path, indent:int = 4):
+
+def export_adv_prop_to_json(
+    data: AdvancedProperties, file: Path, output_dir: Path, indent: int = 4
+):
     output_path = output_dir / f"{file.stem}.json"
     print(f"Exporting file to {output_path}")
     if not is_dataclass(data):
