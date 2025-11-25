@@ -35,36 +35,42 @@ def extract_chapters_from_text(text: str, base_chapters: List[Chapter]) -> List[
 
     for line in text.splitlines():
         stripped = line.strip()
-        if not stripped:
+        if stripped == "":
             continue
 
         matched = False
-        if stripped.startswith("##") or not stripped[0].isalpha():
+        if stripped.startswith("##") or stripped[0].isnumeric():
             for _, (ch_num, sub_num) in traverse_chapters(chapters):
-                if ch_num < curr_chapter:
+                if ch_num < curr_chapter:  # TODO can this happen
                     continue
 
-                ## Match regex with 1 allowed error
-                pattern = regex.compile(f"({build_chapter_regex(chapters, ch_num, sub_num)}){{e<=1}}", flags=regex.IGNORECASE)
+                ## Match regex with a number of allowed errors
+                pattern = regex.compile(
+                    f"({build_chapter_regex(chapters, ch_num, sub_num)}){{e<={config.MAX_DEVIATION}}}",
+                    flags=regex.IGNORECASE,
+                )
                 if pattern.match(substitute(stripped)):
                     inside_chapter, matched = True, True
                     curr_chapter, curr_subchapter = ch_num, sub_num
 
                     # Needs to be reduced because chapters are numbered from 1
-                    target = chapters[curr_chapter - 1]
-                    if curr_subchapter:
-                        target = target.subchapters[curr_subchapter - 1]
-                    target.found = True
+                    chapter = (
+                        chapters[curr_chapter - 1]
+                        if curr_subchapter == 0
+                        else chapters[curr_chapter - 1].subchapters[curr_subchapter - 1]
+                    )
+                    chapter.found = True
                     break
 
                 if matched:
                     break
 
         if not matched and inside_chapter:
-            target = chapters[curr_chapter - 1]
-            if curr_subchapter > 0:
-                target = target.subchapters[curr_subchapter - 1]
-            target.content += "\n" + stripped
-
+            chapter = (
+                chapters[curr_chapter - 1]
+                if curr_subchapter == 0
+                else chapters[curr_chapter - 1].subchapters[curr_subchapter - 1]
+            )
+            chapter.content += "\n" + stripped
 
     return chapters
